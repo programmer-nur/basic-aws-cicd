@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Publish Docker Image
 
 on:
   push:
@@ -13,10 +13,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Login to DockerHub
-      run: echo "${{secret.DOCKER_ACCESS_TOKEN}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
+      run: echo "${{secrets.DOCKER_ACCESS_TOKEN}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
 
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/typescript-backend:latest
 
     - name: Push Docker image
-      run: docker push ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
+      run: docker push ${{secrets.DOCKER_USERNAME}}/typescript-backend:latest
