@@ -23,7 +23,7 @@ jobs:
       run: docker pull ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
     
     - name: Run the new container
-      run: docker compose up -d
+      run:  docker run -d -p 5000:5000 --name basic-aws-cicd ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
 
     
 
