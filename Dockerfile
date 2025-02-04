@@ -1,13 +1,16 @@
-FROM node:20
+FROM node:20-alpine
 
+# Create app directory
 WORKDIR /app
-
-COPY package.json .
-
-RUN npm install
 
 COPY . .
 
+RUN yarn install
+
+COPY .env.example .env
+
 EXPOSE 5000
 
-CMD ["npm", "run", "dev"]
+RUN ["+x", "/entrypoint.sh"]
+
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
