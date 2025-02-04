@@ -11,14 +11,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-
     - name: Login to DockerHub
-      run: echo "${{secrets.DOCKER_ACCESS_TOKEN}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
-
+      run: echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
-
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/basic-aws-cicd .
     - name: Push Docker image
-      run: docker push ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/basic-aws-cicd
 
     

@@ -11,19 +11,15 @@ jobs:
 
     steps:
     - name: Stop the old container
-      run: docker stop basic-aws-cicd || true
-    
+      run: docker stop basic-aws-cicd
     - name: Delete the old container
-      run: docker rm basic-aws-cicd || true
-    
+      run: docker rm basic-aws-cicd
     - name: Delete the old image
-      run: docker rmi ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest || true
-
+      run: docker rmi nur5480/basic-aws-cicd
     - name: Pull the image from DockerHub
-      run: docker pull ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
-    
-    - name: Run the new container
-      run:  docker run -d -p 5000:5000 --name basic-aws-cicd ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
+      run: docker pull nur5480/basic-aws-cicd
+    - name: Run the new  image
+      run: docker run -d --name basic-aws-cicd -p 5000:5000 nur5480/basic-aws-cicd
 
     
 
