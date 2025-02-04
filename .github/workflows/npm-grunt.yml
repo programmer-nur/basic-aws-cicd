@@ -16,7 +16,7 @@ jobs:
       run: echo "${{secrets.DOCKER_ACCESS_TOKEN}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
 
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/typescript-backend:latest
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
 
     - name: Push Docker image
-      run: docker push ${{secrets.DOCKER_USERNAME}}/typescript-backend:latest
+      run: docker push ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
