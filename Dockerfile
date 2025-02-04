@@ -7,7 +7,6 @@ COPY . .
 
 RUN yarn install
 
-COPY .env.example .env
 
 EXPOSE 5000
 
