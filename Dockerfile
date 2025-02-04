@@ -7,9 +7,9 @@ COPY . .
 
 RUN yarn install
 
+
 EXPOSE 5000
 
-# Fix: Correct syntax for making script executable
-RUN chmod +x /entrypoint.sh
+RUN ["+x", "entrypoint.sh"]
 
-ENTRYPOINT [ "sh", "/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "entrypoint.sh" ]
