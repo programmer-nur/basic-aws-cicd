@@ -10,6 +10,6 @@ RUN yarn install
 
 EXPOSE 5000
 
-RUN ["+x", "entrypoint.sh"]
+RUN node dist/index.js
 
 ENTRYPOINT [ "sh", "entrypoint.sh" ]
