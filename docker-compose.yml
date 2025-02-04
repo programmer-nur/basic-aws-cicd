@@ -1,0 +1,6 @@
+version: '3'
+services:
+ node-app:
+   image: nur5480/basic-aws-cicd
+   container_name: basic-aws-cicd
+   network_mode: host

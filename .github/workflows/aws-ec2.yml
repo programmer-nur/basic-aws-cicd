@@ -1,0 +1,31 @@
+name: Deploy to AWS EC2
+
+on:
+  workflow_run:
+    workflows: ["Publish Docker Image"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Stop the old container
+      run: docker stop basic-aws-cicd || true
+    
+    steps: Delete the old container
+      run: docker rm basic-aws-cicd || true
+    
+    steps: Delete the old image
+      run: docker rmi ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest || true
+
+    steps: Pull the image from DockerHub
+      run: docker pull ${{secrets.DOCKER_USERNAME}}/basic-aws-cicd:latest
+    
+    steps: Run the new container
+      run: docker compose up -d
+
+    
+
+    
